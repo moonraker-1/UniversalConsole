@@ -10,6 +10,7 @@ namespace UniversalConsole.InputProcessor
     {
         public enum Standards
         {
+            Invalid = 0,
             Comm = 1,
             CommObj = 2,
             CommPropObj = 3,
