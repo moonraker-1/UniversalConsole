@@ -3,6 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection.PortableExecutable;
 using System.Threading;
 using ConsoleAccess;
+using UniversalConsole.InputProcessor;
+using UniversalConsole.CommandProcessor;
 //using MathLibrary;
 
 namespace UniversalConsole
@@ -11,17 +13,18 @@ namespace UniversalConsole
     {
         static void Main(string[] args)
         {
+            Run();
 
-            if (CheckAccess.Check())
-            {
-                Console.WriteLine("Access Granted");
-                Run();
-            }
-            else
-            {
-                Console.WriteLine("Access Denied");
-                Thread.Sleep(1500);
-            }
+            //if (CheckAccess.Check())
+            //{
+            //    Console.WriteLine("Access Granted");
+            //    Run();
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Access Denied");
+            //    Thread.Sleep(1500);
+            //}
 
 
         }
@@ -31,9 +34,14 @@ namespace UniversalConsole
             while (true) 
             {
                 Console.Write(Globals.location + ">>");
-                InputProcessor.Input input = new InputProcessor.Input();
-                input.Take(Convert.ToString(Console.Read()));
-                Console.Read();
+
+
+                Input input = new Input();
+                InputData inpData = input.Take(Convert.ToString(Console.ReadLine()));
+                Command command = new Command();
+                command.Process(inpData);
+
+                Console.ReadKey();
             }
         }
 

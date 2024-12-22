@@ -57,13 +57,13 @@ namespace UniversalConsole.InputProcessor
             switch (input.Length)
             {
                 case 1:
-                    return IInputStandards.Standards.Comm;
+                    return IInputStandards.Standards.Key;
                 case 2:
-                    return IInputStandards.Standards.CommObj;
+                    return IInputStandards.Standards.KeyObj;
                 case 3:
-                    return IInputStandards.Standards.CommPropObj;
+                    return IInputStandards.Standards.KeyPropObj;
                 case 4:
-                    return IInputStandards.Standards.CommPropObj1Obj2;
+                    return IInputStandards.Standards.KeyPropObj1Obj2;
                 default:
                     return IInputStandards.Standards.Invalid;
             }
