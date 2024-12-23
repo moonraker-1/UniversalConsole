@@ -56,7 +56,7 @@ namespace UniversalConsole.CommandProcessor
         private bool processKey(InputData iData)
         {
 
-            if(Enum.TryParse(iData.InputWords[0], out IKeyWords.Keys key))
+            if(Enum.TryParse(iData.InputWords[0].ToUpper(), out IKeyWords.Keys key))
             {
                 return KeywordExecutable.Execute(key);
             }
