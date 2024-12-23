@@ -39,9 +39,9 @@ namespace UniversalConsole
                 Input input = new Input();
                 InputData inpData = input.Take(Convert.ToString(Console.ReadLine()));
                 Command command = new Command();
-                command.Process(inpData);
+                bool lol = command.Process(inpData);
 
-                Console.ReadKey();
+                //Console.ReadKey();
             }
         }
 

@@ -18,7 +18,8 @@ namespace Black_Tool_Kit.Interfaces
 			HELP,
 			IP,
 			MAC,
-			MATH
+			MATH, 
+			CLEAR
 		}
 
 		//public void PerformThis();

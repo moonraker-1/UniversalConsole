@@ -45,6 +45,8 @@ namespace UniversalConsole.CommandProcessor
                     return executeMAC();
                 case IKeyWords.Keys.MATH:
                     return executeMath();
+                case IKeyWords.Keys.CLEAR:
+                    return executeClear();
                 default:
                     return false;
             }
@@ -173,9 +175,9 @@ namespace UniversalConsole.CommandProcessor
                 Console.WriteLine("Provide a mathematical problem to solve (or press 'q' to exit): ");
                 try
                 {
-                    if(Console.ReadKey().Key != ConsoleKey.Q)
+                    if(Console.ReadKey(false).Key != ConsoleKey.Q)
                     {
-                        string input = Convert.ToString(Console.ReadLine());
+                        string? input = Console.ReadLine();
 
                         DataTable dt = new DataTable();
                         double result = Convert.ToDouble(dt.Compute(input, string.Empty));
@@ -189,9 +191,28 @@ namespace UniversalConsole.CommandProcessor
                 }
                 catch
                 {
-                    Console.WriteLine("INVALID INPUR PROVIDED.\n");
-                    return false;
+                    Console.WriteLine("INVALID INPUT PROVIDED.\n");
+                    break;
                 }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Clears the console.
+        /// </summary>
+        /// <returns></returns>
+        private static bool executeClear()
+        {
+            try
+            {
+                Console.Clear();
+                return true;
+            }
+            catch
+            {
+                Console.WriteLine("Internal error. Please, proceed with normal operations.\n");
+                return false;
             }
         }
 
