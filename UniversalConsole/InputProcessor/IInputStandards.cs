@@ -10,10 +10,11 @@ namespace UniversalConsole.InputProcessor
     {
         public enum Standards
         {
-            Comm = 1,
-            CommObj = 2,
-            CommPropObj = 3,
-            CommPropObj1Obj2 = 4
+            Invalid = 0,
+            Key = 1,
+            KeyObj = 2,
+            KeyPropObj = 3,
+            KeyPropObj1Obj2 = 4
         }
     }
 }
