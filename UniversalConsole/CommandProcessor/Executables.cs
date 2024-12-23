@@ -60,7 +60,22 @@ namespace UniversalConsole.CommandProcessor
 
         private static bool executeOs()
         {
-            return false;
+            try
+            {
+                Console.WriteLine("Information about the operating system:\n**************\n");
+                Console.WriteLine($"Operating System: {Environment.OSVersion.VersionString}\n\n");
+                Console.WriteLine($"Is 64-bit OS: {Environment.Is64BitOperatingSystem}\n\n");
+                Console.WriteLine($"Machine Name: {Environment.MachineName}\n\n");
+                Console.WriteLine($"User Name: {Environment.UserName}\n\n");
+                Console.WriteLine($"System Directory: {Environment.SystemDirectory}\n\n");
+                Console.WriteLine($"Logical Drives: {string.Join(", ", Environment.GetLogicalDrives())}\n\n");
+                Console.WriteLine($"Number of available processors: {Environment.ProcessorCount}\n\n**************\n");
+            }
+            catch
+            {
+                Console.WriteLine("No more information could be retrieved.\n");
+            }
+            return true;
         }
 
         private static bool executeThis()
