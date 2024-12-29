@@ -385,20 +385,40 @@ namespace UniversalConsole.CommandProcessor
                 Console.WriteLine("Provide a mathematical problem to solve (or press 'q' to exit): ");
                 try
                 {
-                    if (Console.ReadKey(false).Key != ConsoleKey.Q)
+                    string? input = "";
+                    //string
+                    while (true)
                     {
-                        string? input = Console.ReadLine();
+                        ConsoleKeyInfo i = Console.ReadKey();
+                        if (i.Key == ConsoleKey.Q)
+                        {
+                            Console.WriteLine();
+                            return true;
+                        }
+                        else if (i.Key == ConsoleKey.Enter)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            input += i.KeyChar;
+                        }
+                        
+                    }
+                    //if (Console.ReadKey(false).Key != ConsoleKey.Q)
+                    //{
+                    //    string? input = Console.ReadLine();
 
                         DataTable dt = new DataTable();
                         double result = Convert.ToDouble(dt.Compute(input, string.Empty));
                         Console.WriteLine("******************************\n" +
                             $"Result: {result}\n");
-                    }
-                    else
-                    {
-                        return true;
-                    }
-            }
+                    //}
+                    //else
+                    //{
+                    //    return true;
+                    //}
+                }
                 catch (Exception e)
                 {
                     Console.WriteLine($"{e}");
