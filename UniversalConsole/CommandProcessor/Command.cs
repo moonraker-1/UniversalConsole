@@ -10,12 +10,8 @@ using UniversalConsole.InputProcessor;
 
 namespace UniversalConsole.CommandProcessor
 {
-    internal class Command : IKeyWords
+    internal class Command
     {
-        private string? word1;
-        private string? word2;
-        private string? word3;
-        private string? word4;
 
         /// <summary>
         /// 
