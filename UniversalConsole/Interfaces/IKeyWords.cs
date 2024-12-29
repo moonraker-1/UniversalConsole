@@ -22,7 +22,6 @@ namespace Black_Tool_Kit.Interfaces
 			UPDACCESS,
 			WRITE,
 			FONTCOLOR,
-			FONTSIZE,
 			HISTORY,
 			DIRINFO,
 			FILEINFO

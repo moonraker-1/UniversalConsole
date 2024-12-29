@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ConsoleAccess
+namespace UniversalConsoleShared
 {
     public static class CheckAccess
     {
@@ -12,9 +12,9 @@ namespace ConsoleAccess
         }
 
 
-        public static bool Check()
+        public static string Check()
         {
-            return true;
+            return AccessTypes.Advanced;
         }
     }
 }
