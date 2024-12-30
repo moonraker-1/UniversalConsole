@@ -11,10 +11,13 @@ using System.Data;
 using System.Net.NetworkInformation;
 using System.Net;
 using static System.Net.Mime.MediaTypeNames;
+
+
 using Hardware.Info;
 using System.Threading;
 using ConsoleMathLib;
 using UniversalConsoleShared;
+using System.Reflection;
 
 namespace UniversalConsole.CommandProcessor
 {
@@ -102,23 +105,43 @@ namespace UniversalConsole.CommandProcessor
 
         private static bool executeComputer()
         {
-            if (OperatingSystem.IsWindows())
+            bool result = true;
+            ComputerInformation computerInformation = new ComputerInformation();
+            Console.Write("\nWould you like to get it written to a text file? y/n: ");
+            try
             {
+                string input1 = Convert.ToString(Console.ReadLine());
+                if (input1 != null) 
+                {
+                    if (input1.ToUpper() == "Y" || input1.ToUpper() == "YES")
+                    {
+                        Console.WriteLine("Provide the address, or press ENTER - it will be saved on the Desktop:");
+                        string path = Convert.ToString(Console.ReadLine());
+                        if (path != null || path != "")
+                        {
+                            result = computerInformation.Retrieve(true, path);
+                        }
+                        else
+                        {
+                            result = computerInformation.Retrieve(true, null);
+                        }
+                    }
+                    else
+                    {
+                        result = computerInformation.Retrieve(false, null);
+                    }
+                }
+
 
             }
-            else if (OperatingSystem.IsMacOS())
+            catch
             {
+                Console.WriteLine("Try again");
+            }
 
-            }
-            else if (OperatingSystem.IsLinux())
-            {
-                
-            }
-            else
-            {
-                Console.WriteLine("\nERROR: Unfortunately, no information can be provided at the moment.\n");
-            }
-            return true;
+
+
+            return result;
         }
 
         /// <summary>
