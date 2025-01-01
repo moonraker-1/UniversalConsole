@@ -99,7 +99,24 @@ namespace UniversalConsole.CommandProcessor
 
         private static bool executeThis()
         {
-            // To be implemented.
+            List<string> thisArgs = new List<string>();
+            Console.WriteLine("**********************");
+            thisArgs.Add("The information about the machine and the running process:\n");
+            thisArgs.Add($"Machine Name: {Environment.MachineName}\n");
+            thisArgs.Add($"User Name: {Environment.UserName}\n");
+            thisArgs.Add($"Operating System: {Environment.OSVersion.VersionString}\n");
+            
+            if (Environment.Is64BitOperatingSystem)
+            {
+                thisArgs.Add($"Is 64-bit OS: Yes\n");
+            }
+            else
+            {
+                thisArgs.Add($"Is 64-bit OS: No\n");
+            }
+            thisArgs.Add($"System Directory: {Environment.SystemDirectory}\n\n");
+            thisArgs.Add($"Logical Drives: {string.Join(", ", Environment.GetLogicalDrives())}\n\n");
+            thisArgs.Add($"Number of available processors: {Environment.ProcessorCount}\n\n**************\n");
             return true;
         }
 
