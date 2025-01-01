@@ -14,9 +14,14 @@ namespace UniversalConsoleShared
         public static string location = AppDomain.CurrentDomain.BaseDirectory;
 
         /// <summary>
-        /// Is required to manage access to different functionality.
+        /// Is required to manage access to different functionalities.
         /// </summary>
         public static string accessType = UniversalConsoleShared.CheckAccess.Check();
+
+        /// <summary>
+        /// Is required to manage access to different functionalities.
+        /// </summary>
+        public static string accessEndDate = UniversalConsoleShared.CheckAccess.CheckEndDate();
 
         /// <summary>
         /// Is required for various console messages.

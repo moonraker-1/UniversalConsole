@@ -86,7 +86,7 @@ namespace FileProcessor
                                 sw.WriteLine();
                                 sw.WriteLine("*****************************");
                             }
-
+                            sw.Close();
                         }
 
                     }
@@ -94,6 +94,34 @@ namespace FileProcessor
 
             }
             return true;
+        }
+
+
+        public static bool WriteToFile(List<string> content)
+        {
+            try
+            {
+                Random random = new Random();
+                string fileName = $"\\{random.Next(10000)}.txt";
+                string folder = GetAppropriateFolder();
+                string defaultPath = folder + $"{fileName}";
+                using (StreamWriter sw = new StreamWriter(defaultPath))
+                {
+                    foreach (string c in content)
+                    {
+                        sw.WriteLine(c);
+                    }
+                    sw.Close();
+                }
+                Console.WriteLine($"The file {fileName} has been saved to {folder}\n");
+                return true;
+            }
+            catch(NullReferenceException ex)
+            {
+                Console.WriteLine("File cannot be saved. Please, save " +
+                    "the text output in the terminal yourself.\n");
+                return false;
+            }
         }
 
         private static string OS()
@@ -112,5 +140,27 @@ namespace FileProcessor
             }
             return "undefined";
         } 
+
+        /// <summary>
+        /// Find a folder to save a file to.
+        /// </summary>
+        /// <returns>A path to that folder, or null.</returns>
+        private static string? GetAppropriateFolder()
+        {
+            string? path = FolderSearch.SearchDesktop();
+            if (path == null || path == "")
+            {
+                path = FolderSearch.SearchDesktopDirectory();
+                if (path == null || path == "")
+                {
+                    path = FolderSearch.SearchMyDocuments();
+                    if (path == null || path == "")
+                    {
+                        path = FolderSearch.SearchPersonal();
+                    }
+                }
+            }
+            return path;
+        }
     }
 }
