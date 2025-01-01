@@ -16,5 +16,10 @@ namespace UniversalConsoleShared
         {
             return AccessTypes.Advanced;
         }
+
+        public static string CheckEndDate()
+        {
+            return DateTime.Now.ToString();
+        }
     }
 }

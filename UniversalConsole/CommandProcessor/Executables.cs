@@ -99,7 +99,58 @@ namespace UniversalConsole.CommandProcessor
 
         private static bool executeThis()
         {
-            // To be implemented.
+            List<string> thisArgs = new List<string>();
+            Console.WriteLine("**********************");
+            thisArgs.Add("The information about the machine and the running process:\n");
+            thisArgs.Add($"Machine Name: {Environment.MachineName}");
+            thisArgs.Add($"User Name: {Environment.UserName}");
+            thisArgs.Add($"Operating System: {Environment.OSVersion.VersionString}");
+            
+            if (Environment.Is64BitOperatingSystem)
+            {
+                thisArgs.Add($"Is 64-bit OS: Yes\n");
+            }
+            else
+            {
+                thisArgs.Add($"Is 64-bit OS: No\n");
+            }
+            thisArgs.Add($"System Directory: {Environment.SystemDirectory}");
+            thisArgs.Add($"Number of available processors: {Environment.ProcessorCount}");
+
+            thisArgs.Add($"*********************\nDate & Time: {DateTime.Now}");
+            
+            thisArgs.Add($"Subscription type: {Globals.accessType}");
+
+            thisArgs.Add($"Subscription end date: {Globals.accessEndDate}");
+
+            foreach (string arg in thisArgs)
+            {
+                Console.WriteLine(arg);
+            }
+            AskAboutSaving:
+            Console.Write("\nWould you like to get it written to a text file? y/n: ");
+            try
+            {
+                string input1 = Convert.ToString(Console.ReadLine());
+                if (input1 != null)
+                {
+                    if (input1.ToUpper() == "Y" || input1.ToUpper() == "YES")
+                    {
+                        FileProcessor.FileWriting.WriteToFile(thisArgs);
+                    }
+                    else if (input1.ToUpper() != "N" && input1.ToUpper() != "NO")
+                    {
+                        goto AskAboutSaving;
+                    }
+                }
+
+            }
+            catch
+            {
+                Console.WriteLine("Try again");
+            }
+
+
             return true;
         }
 
