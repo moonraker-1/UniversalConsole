@@ -24,7 +24,8 @@ namespace Black_Tool_Kit.Interfaces
 			FONTCOLOR,
 			HISTORY,
 			DIRINFO,
-			FILEINFO
+			FILEINFO,
+			HACKER
 		}
 
 		public enum KeysAdvanced

@@ -18,6 +18,7 @@ using System.Threading;
 using ConsoleMathLib;
 using UniversalConsoleShared;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace UniversalConsole.CommandProcessor
 {
@@ -67,6 +68,9 @@ namespace UniversalConsole.CommandProcessor
                     return executeDirectoryInfo();
                 case IKeyWords.Keys.FILEINFO:
                     return executeFileInfo();
+                case IKeyWords.Keys.HACKER:
+                    executeHacker();
+                    return true;
                 default:
                     return false;
             }
@@ -596,6 +600,26 @@ namespace UniversalConsole.CommandProcessor
             return true;
         }
 
+        /// <summary>
+        /// Opens another terminal where random 'matrix-like' characters will be generated to fill
+        /// that terminal.
+        /// </summary>
+        private static void executeHacker()
+        {
+            Thread t = new Thread(() =>
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    FileName = "HackerConsole.exe",
+                    Arguments = "/K dotnet run",
+                    UseShellExecute = true,
+                    CreateNoWindow = false
+                };
+
+                Process.Start(startInfo);
+            });
+            t.Start();
+        }
 
         #endregion
     }
