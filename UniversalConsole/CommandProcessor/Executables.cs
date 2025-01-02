@@ -366,21 +366,22 @@ namespace UniversalConsole.CommandProcessor
         {
             try
             {
-                Console.WriteLine("IP Configuration:");
-                Console.WriteLine("--------------------");
+                List<string> IPArgs = new List<string>();
+                IPArgs.Add("IP Configuration:");
+                IPArgs.Add("--------------------");
 
                 // Get all network interfaces
                 foreach (NetworkInterface networkInterface in NetworkInterface.GetAllNetworkInterfaces())
                 {
                     // Display basic network interface details
-                    Console.WriteLine($"Name: {networkInterface.Name}");
-                    Console.WriteLine($"Description: {networkInterface.Description}");
-                    Console.WriteLine($"Status: {networkInterface.OperationalStatus}");
+                    IPArgs.Add($"Name: {networkInterface.Name}");
+                    IPArgs.Add($"Description: {networkInterface.Description}");
+                    IPArgs.Add($"Status: {networkInterface.OperationalStatus}");
 
                     // Skip if the interface is not up
                     if (networkInterface.OperationalStatus != OperationalStatus.Up)
                     {
-                        Console.WriteLine();
+                        IPArgs.Add("\n");
                         continue;
                     }
 
@@ -388,28 +389,60 @@ namespace UniversalConsole.CommandProcessor
                     IPInterfaceProperties ipProperties = networkInterface.GetIPProperties();
 
                     // Display unicast IP addresses
-                    Console.WriteLine("IP Addresses:");
+                    IPArgs.Add("IP Addresses:");
                     foreach (UnicastIPAddressInformation ip in ipProperties.UnicastAddresses)
                     {
-                        Console.WriteLine($"  - {ip.Address} (Subnet Mask: {ip.IPv4Mask})");
+                        IPArgs.Add($"  - {ip.Address} (Subnet Mask: {ip.IPv4Mask})");
                     }
 
                     // Display default gateway
-                    Console.WriteLine("Default Gateway:");
+                    IPArgs.Add("Default Gateway:");
                     foreach (GatewayIPAddressInformation gateway in ipProperties.GatewayAddresses)
                     {
-                        Console.WriteLine($"  - {gateway.Address}");
+                        IPArgs.Add($"  - {gateway.Address}");
                     }
 
                     // Display DNS servers
-                    Console.WriteLine("DNS Servers:");
+                    IPArgs.Add("DNS Servers:");
                     foreach (IPAddress dns in ipProperties.DnsAddresses)
                     {
-                        Console.WriteLine($"  - {dns}");
+                        IPArgs.Add($"  - {dns}");
                     }
 
-                    Console.WriteLine();
+                    IPArgs.Add("\n");
                 }
+
+                foreach (string arg in IPArgs)
+                {
+                    Console.WriteLine(arg);
+                }
+
+                AskAboutSavingIP:
+                Console.Write("\nWould you like to get it written to a text file? y/n: ");
+                try
+                {
+                    string input1 = Convert.ToString(Console.ReadLine());
+                    if (input1 != null)
+                    {
+                        if (input1.ToUpper() == "Y" || input1.ToUpper() == "YES")
+                        {
+                            FileProcessor.FileWriting.WriteToFile(IPArgs);
+                        }
+                        else if (input1.ToUpper() != "N" && input1.ToUpper() != "NO")
+                        {
+                            goto AskAboutSavingIP;
+                        }
+                    }
+
+                }
+                catch
+                {
+                    Console.WriteLine("Try again");
+                }
+
+
+                return true;
+
             }
             catch
             {
@@ -433,6 +466,29 @@ namespace UniversalConsole.CommandProcessor
                         select nic.GetPhysicalAddress().ToString()
                     ).FirstOrDefault();
                 Console.WriteLine($"MAC-address : {macAddr?.ToString()}.\n");
+
+                AskAboutSavingMAC:
+                Console.Write("\nWould you like to get it written to a text file? y/n: ");
+                try
+                {
+                    string input1 = Convert.ToString(Console.ReadLine());
+                    if (input1 != null)
+                    {
+                        if (input1.ToUpper() == "Y" || input1.ToUpper() == "YES")
+                        {
+                            FileProcessor.FileWriting.WriteToFile(macAddr?.ToString());
+                        }
+                        else if (input1.ToUpper() != "N" && input1.ToUpper() != "NO")
+                        {
+                            goto AskAboutSavingMAC;
+                        }
+                    }
+
+                }
+                catch
+                {
+                    Console.WriteLine("Try again");
+                }
                 return true;
             }
             catch
