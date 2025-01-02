@@ -116,7 +116,36 @@ namespace FileProcessor
                 Console.WriteLine($"The file {fileName} has been saved to {folder}\n");
                 return true;
             }
-            catch(NullReferenceException ex)
+            catch
+            {
+                Console.WriteLine("File cannot be saved. Please, save " +
+                    "the text output in the terminal yourself.\n");
+                return false;
+            }
+        }
+
+        public static bool WriteToFile(string? content)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(content))
+                {
+                    return false;
+                }
+
+                Random random = new Random();
+                string fileName = $"\\{random.Next(10000)}.txt";
+                string folder = GetAppropriateFolder();
+                string defaultPath = folder + $"{fileName}";
+                using (StreamWriter sw = new StreamWriter(defaultPath))
+                {
+                    sw.WriteLine(content);
+                    sw.Close();
+                }
+                Console.WriteLine($"The file {fileName} has been saved to {folder}\n");
+                return true;
+            }
+            catch
             {
                 Console.WriteLine("File cannot be saved. Please, save " +
                     "the text output in the terminal yourself.\n");
