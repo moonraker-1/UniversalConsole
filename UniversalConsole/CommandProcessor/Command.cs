@@ -66,7 +66,11 @@ namespace UniversalConsole.CommandProcessor
         /// <returns></returns>
         private bool processKeyObj(InputData iData)
         {
-            return false;
+            if (Enum.TryParse(iData.InputWords[0].ToUpper(), out IKeyWords.Keys key) && iData.InputWords.Length == 2)
+            {
+                return KeywordObjectExecutable.Execute(key, iData.InputWords[1]);
+            }
+            return true;
         }
 
         private bool processKeyPropObj(InputData iData)

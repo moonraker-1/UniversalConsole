@@ -10,8 +10,8 @@ namespace UniversalConsole.Interfaces
     {
         public enum Params
         {
-            all,
-            adv
+            ALL,
+            ADV
         }
     }
 }

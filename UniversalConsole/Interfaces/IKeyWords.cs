@@ -10,6 +10,7 @@ namespace Black_Tool_Kit.Interfaces
 	{
 		public enum Keys
 		{
+            #region Free Keys
             THIS,
 			COMPUTER,
 			CALENDAR,
@@ -25,17 +26,15 @@ namespace Black_Tool_Kit.Interfaces
 			HISTORY,
 			DIRINFO,
 			FILEINFO,
-			HACKER
-		}
+			HACKER,
+			REMOVE,
+            #endregion
 
-		public enum KeysAdvanced
-		{
-			CUSTOMIZE,
-			FILE,
-			DIR,
-			PLAY,
 
-		}
+            #region Advanced Keys
+            PLAY
+            #endregion
+        }
 
 	}
 }
