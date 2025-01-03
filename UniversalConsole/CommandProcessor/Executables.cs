@@ -19,6 +19,9 @@ using ConsoleMathLib;
 using UniversalConsoleShared;
 using System.Reflection;
 using System.Diagnostics;
+using System.IO;
+using System.Reflection.Metadata.Ecma335;
+using UniversalConsole.Interfaces;
 
 namespace UniversalConsole.CommandProcessor
 {
@@ -66,8 +69,6 @@ namespace UniversalConsole.CommandProcessor
                     return executeEditor();
                 case IKeyWords.Keys.DIRINFO:
                     return executeDirectoryInfo();
-                case IKeyWords.Keys.FILEINFO:
-                    return executeFileInfo();
                 case IKeyWords.Keys.HACKER:
                     executeHacker();
                     return true;
@@ -651,10 +652,6 @@ namespace UniversalConsole.CommandProcessor
         {
             return true;
         }
-        private static bool executeFileInfo()
-        {
-            return true;
-        }
 
         /// <summary>
         /// Opens another terminal where random 'matrix-like' characters will be generated to fill
@@ -682,6 +679,74 @@ namespace UniversalConsole.CommandProcessor
 
     internal static class KeywordObjectExecutable
     {
+        public static bool Execute(IKeyWords.Keys key, string? obj)
+        {
+            switch (key)
+            {
+                case IKeyWords.Keys.FILEINFO:
+                    return executeFileInfo(obj);
+                case IKeyWords.Keys.DIRINFO:
+                    return executeDirInfo(obj);
+                case IKeyWords.Keys.REMOVE:
+                    return executeRemove(obj);
+                case IKeyWords.Keys.PLAY:
+                    return executePlay(obj);
+                default:
+                    return false;
+            }
+        }
 
+        private static bool executeFileInfo(string? filename)
+        {
+            try
+            {
+            }
+            catch
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("ERROR: provide a correct file name, or path to a file from another directory.");
+                Console.ForegroundColor = ConsoleColor.White;
+                return false;
+            }
+            return true;
+        }
+
+        private static bool executeDirInfo(string? path) 
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                return true;
+            }
+            return true;
+        }
+
+        private static bool executeRemove(string? whatToRemove)
+        {
+            try
+            {
+                if (Enum.TryParse(whatToRemove.ToUpper(), out IObjects.Params param))
+                {
+                    if (param.ToString().ToUpper() == "ALL")
+                    {
+
+                    }
+                }
+            }
+            catch
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("ERROR: you did not clearly specify what to remove.");
+                Console.ForegroundColor = ConsoleColor.White;
+                return false;
+            }
+            
+            return true;
+        }
+
+        private static bool executePlay(string? whatGame)
+        {
+            return true;
+        }
     }
 }
+
