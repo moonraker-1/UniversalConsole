@@ -22,6 +22,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection.Metadata.Ecma335;
 using UniversalConsole.Interfaces;
+using System.Security.AccessControl;
 
 namespace UniversalConsole.CommandProcessor
 {
@@ -68,7 +69,8 @@ namespace UniversalConsole.CommandProcessor
                 case IKeyWords.Keys.WRITE:
                     return executeEditor();
                 case IKeyWords.Keys.DIRINFO:
-                    return executeDirectoryInfo();
+                    // This command may be with a key and no object (no URl).
+                    return executeDirectoryInfo(key);
                 case IKeyWords.Keys.HACKER:
                     executeHacker();
                     return true;
@@ -607,7 +609,6 @@ namespace UniversalConsole.CommandProcessor
             return true;
         }
 
-
         private static bool executeFontColor()
         {
             Console.WriteLine("\n**************");
@@ -648,9 +649,9 @@ namespace UniversalConsole.CommandProcessor
             return true;
         }
 
-        private static bool executeDirectoryInfo()
+        private static bool executeDirectoryInfo(IKeyWords.Keys key)
         {
-            return true;
+            return KeywordObjectExecutable.Execute(key, null);
         }
 
         /// <summary>
@@ -696,29 +697,21 @@ namespace UniversalConsole.CommandProcessor
             }
         }
 
-        private static bool executeFileInfo(string? filename)
-        {
-            try
-            {
-            }
-            catch
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("ERROR: provide a correct file name, or path to a file from another directory.");
-                Console.ForegroundColor = ConsoleColor.White;
-                return false;
-            }
-            return true;
-        }
+        /// <summary>
+        /// Provides information about the specified file.
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        private static bool executeFileInfo(string? filename) =>
+            DirectoryFileInfo.GetFileInfo(filename);
 
-        private static bool executeDirInfo(string? path) 
-        {
-            if (string.IsNullOrEmpty(path))
-            {
-                return true;
-            }
-            return true;
-        }
+        /// <summary>
+        /// Provides information about the current or another directory.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        private static bool executeDirInfo(string? path) =>
+            DirectoryFileInfo.GetDirInfo(path);
 
         private static bool executeRemove(string? whatToRemove)
         {
