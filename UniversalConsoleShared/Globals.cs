@@ -49,5 +49,15 @@ namespace UniversalConsoleShared
             { 14, ConsoleColor.DarkCyan },
             { 15, ConsoleColor.DarkGray },
         };
+
+        /// <summary>
+        /// Error log file.
+        /// </summary>
+        public static string errorLogFile = "errorLog.txt";
+
+        /// <summary>
+        /// Event log file.
+        /// </summary>
+        public static string eventLogFile = "eventLog.txt";
     }
 }
