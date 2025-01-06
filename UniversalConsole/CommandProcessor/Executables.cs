@@ -97,67 +97,76 @@ namespace UniversalConsole.CommandProcessor
                 Console.WriteLine($"Logical Drives: {string.Join(", ", Environment.GetLogicalDrives())}\n\n");
                 Console.WriteLine($"Number of available processors: {Environment.ProcessorCount}\n\n**************\n");
             }
-            catch
+            catch(Exception e )
             {
                 Console.WriteLine("No more information could be retrieved.\n");
+                ErrorLog.Write(e.Message, DateTime.Now);
+                return false;
             }
             return true;
         }
 
         private static bool executeThis()
         {
-            List<string> thisArgs = new List<string>();
-            Console.WriteLine("**********************");
-            thisArgs.Add("The information about the machine and the running process:\n");
-            thisArgs.Add($"Machine Name: {Environment.MachineName}");
-            thisArgs.Add($"User Name: {Environment.UserName}");
-            thisArgs.Add($"Operating System: {Environment.OSVersion.VersionString}");
-            
-            if (Environment.Is64BitOperatingSystem)
-            {
-                thisArgs.Add($"Is 64-bit OS: Yes\n");
-            }
-            else
-            {
-                thisArgs.Add($"Is 64-bit OS: No\n");
-            }
-            thisArgs.Add($"System Directory: {Environment.SystemDirectory}");
-            thisArgs.Add($"Number of available processors: {Environment.ProcessorCount}");
-
-            thisArgs.Add($"*********************\nDate & Time: {DateTime.Now}");
-            
-            thisArgs.Add($"Subscription type: {Globals.accessType}");
-
-            thisArgs.Add($"Subscription end date: {Globals.accessEndDate}");
-
-            foreach (string arg in thisArgs)
-            {
-                Console.WriteLine(arg);
-            }
-            AskAboutSaving:
-            Console.Write("\nWould you like to get it written to a text file? y/n: ");
             try
             {
-                string input1 = Convert.ToString(Console.ReadLine());
-                if (input1 != null)
+                List<string> thisArgs = new List<string>();
+                Console.WriteLine("**********************");
+                thisArgs.Add("The information about the machine and the running process:\n");
+                thisArgs.Add($"Machine Name: {Environment.MachineName}");
+                thisArgs.Add($"User Name: {Environment.UserName}");
+                thisArgs.Add($"Operating System: {Environment.OSVersion.VersionString}");
+
+                if (Environment.Is64BitOperatingSystem)
                 {
-                    if (input1.ToUpper() == "Y" || input1.ToUpper() == "YES")
-                    {
-                        FileProcessor.FileWriting.WriteToFile(thisArgs);
-                    }
-                    else if (input1.ToUpper() != "N" && input1.ToUpper() != "NO")
-                    {
-                        goto AskAboutSaving;
-                    }
+                    thisArgs.Add($"Is 64-bit OS: Yes\n");
                 }
+                else
+                {
+                    thisArgs.Add($"Is 64-bit OS: No\n");
+                }
+                thisArgs.Add($"System Directory: {Environment.SystemDirectory}");
+                thisArgs.Add($"Number of available processors: {Environment.ProcessorCount}");
 
+                thisArgs.Add($"*********************\nDate & Time: {DateTime.Now}");
+
+                thisArgs.Add($"Subscription type: {Globals.accessType}");
+
+                thisArgs.Add($"Subscription end date: {Globals.accessEndDate}");
+
+                foreach (string arg in thisArgs)
+                {
+                    Console.WriteLine(arg);
+                }
+            AskAboutSaving:
+                Console.Write("\nWould you like to get it written to a text file? y/n: ");
+                try
+                {
+                    string input1 = Convert.ToString(Console.ReadLine());
+                    if (input1 != null)
+                    {
+                        if (input1.ToUpper() == "Y" || input1.ToUpper() == "YES")
+                        {
+                            FileProcessor.FileWriting.WriteToFile(thisArgs);
+                        }
+                        else if (input1.ToUpper() != "N" && input1.ToUpper() != "NO")
+                        {
+                            goto AskAboutSaving;
+                        }
+                    }
+
+                }
+                catch
+                {
+                    Console.WriteLine("Try again");
+                }
             }
-            catch
+            catch(Exception e)
             {
-                Console.WriteLine("Try again");
+                ConsoleAlert.ErrorUnkown();
+                ErrorLog.Write(e.Message, DateTime.Now);
+                return false;
             }
-
-
             return true;
         }
 
@@ -174,8 +183,8 @@ namespace UniversalConsole.CommandProcessor
                     if (input1.ToUpper() == "Y" || input1.ToUpper() == "YES")
                     {
                         Console.WriteLine("Provide the address, or press ENTER - it will be saved on the Desktop:");
-                        string path = Convert.ToString(Console.ReadLine());
-                        if (path != null || path != "")
+                        string? path = Convert.ToString(Console.ReadLine());
+                        if (!string.IsNullOrEmpty(path))
                         {
                             result = computerInformation.Retrieve(true, path);
                         }
@@ -190,16 +199,14 @@ namespace UniversalConsole.CommandProcessor
                     }
                 }
 
-
+                return result;
             }
-            catch
+            catch (Exception e)
             {
-                Console.WriteLine("Try again");
+                ConsoleAlert.ErrorUnkown();
+                ErrorLog.Write(e.Message, DateTime.Now);
+                return false;
             }
-
-
-
-            return result;
         }
 
         /// <summary>
@@ -447,9 +454,10 @@ namespace UniversalConsole.CommandProcessor
                 return true;
 
             }
-            catch
+            catch(Exception e)
             {
-
+                ConsoleAlert.ErrorUnkown();
+                ErrorLog.Write(e.Message, DateTime.Now);
             }
             return true;
         }
@@ -494,8 +502,10 @@ namespace UniversalConsole.CommandProcessor
                 }
                 return true;
             }
-            catch
+            catch(Exception e)
             {
+                ConsoleAlert.ErrorUnkown();
+                ErrorLog.Write(e.Message, DateTime.Now);
                 return false;
             }
         }
@@ -558,7 +568,8 @@ namespace UniversalConsole.CommandProcessor
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"{e}");
+                    ConsoleAlert.ErrorIncorrectParameter(e);
+                    ErrorLog.Write(e.Message, DateTime.Now);
                     break;
                 }
             }
@@ -576,9 +587,10 @@ namespace UniversalConsole.CommandProcessor
                 Console.Clear();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 Console.WriteLine("Internal error. Please, proceed with normal operations.\n");
+                ErrorLog.Write(e.Message, DateTime.Now);
                 return false;
             }
         }
@@ -593,8 +605,9 @@ namespace UniversalConsole.CommandProcessor
             {
                 HistoryStorage.ReadFifty();
             }
-            catch
+            catch(Exception e)
             {
+                ErrorLog.Write(e.Message, DateTime.Now);
                 return false;
             }
             return true;
@@ -637,9 +650,10 @@ namespace UniversalConsole.CommandProcessor
                 Console.ForegroundColor = Globals.consoleColors[color];
                 return true;
             }
-            catch
+            catch(Exception e)
             {
                 Console.WriteLine("ERROR: Incorrect Input.");
+                ErrorLog.Write(e.Message, DateTime.Now);
                 return false;
             }
         }
@@ -662,15 +676,23 @@ namespace UniversalConsole.CommandProcessor
         {
             Thread t = new Thread(() =>
             {
-                ProcessStartInfo startInfo = new ProcessStartInfo
+                try
                 {
-                    FileName = "HackerConsole.exe",
-                    Arguments = "/K dotnet run",
-                    UseShellExecute = true,
-                    CreateNoWindow = false
-                };
+                    ProcessStartInfo startInfo = new ProcessStartInfo
+                    {
+                        FileName = "UniversalConsole.exe",
+                        Arguments = "/K dotnet run",
+                        UseShellExecute = true,
+                        CreateNoWindow = false
+                    };
 
-                Process.Start(startInfo);
+                    Process.Start(startInfo);
+                }
+                catch (Exception e)
+                {
+                    ConsoleAlert.ErrorInternal();
+                    ErrorLog.Write(e.Message, DateTime.Now);
+                }
             });
             t.Start();
         }
@@ -725,11 +747,13 @@ namespace UniversalConsole.CommandProcessor
                     }
                 }
             }
-            catch
+            catch(Exception e)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("ERROR: you did not clearly specify what to remove.");
                 Console.ForegroundColor = ConsoleColor.White;
+
+                ErrorLog.Write(e.Message, DateTime.Now);
                 return false;
             }
             

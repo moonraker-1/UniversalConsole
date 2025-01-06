@@ -65,6 +65,7 @@ namespace UniversalConsole
                 }
                 else
                 {
+
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("ERROR: The file does not exist");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -89,10 +90,10 @@ namespace UniversalConsole
             }
             else if (!Directory.Exists(path))
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("ERROR: provide a correct directory name, or do not provide anything " +
-                    "- the program will\nanalyze the current directory.");
-                Console.ForegroundColor = ConsoleColor.White;
+                string message = "ERROR: provide a correct directory name, or do not provide anything " +
+                    "- the program will\nanalyze the current directory.";
+                ConsoleAlert.ErrorCustom(message);
+                ErrorLog.Write(message, DateTime.Now);
                 return false;
             }
 

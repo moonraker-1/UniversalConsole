@@ -40,6 +40,11 @@ namespace UniversalConsoleShared
                 $"{Globals.contributionMessage}", ConsoleColor.Red);
         }
 
+        public static void ErrorCustom(string message)
+        {
+            _showMessage(message, ConsoleColor.Red);
+        }
+
         private static void _showMessage(string? message, ConsoleColor color)
         {
             Console.ForegroundColor = color;
