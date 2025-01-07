@@ -1,6 +1,5 @@
 ﻿using Black_Tool_Kit.Interfaces;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -10,7 +9,6 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Net.NetworkInformation;
 using System.Net;
-using static System.Net.Mime.MediaTypeNames;
 
 
 using Hardware.Info;
@@ -163,7 +161,7 @@ namespace UniversalConsole.CommandProcessor
             }
             catch(Exception e)
             {
-                ConsoleAlert.ErrorUnkown();
+                ConsoleError.ErrorUnkown();
                 ErrorLog.Write(e.Message, DateTime.Now);
                 return false;
             }
@@ -203,7 +201,7 @@ namespace UniversalConsole.CommandProcessor
             }
             catch (Exception e)
             {
-                ConsoleAlert.ErrorUnkown();
+                ConsoleError.ErrorUnkown();
                 ErrorLog.Write(e.Message, DateTime.Now);
                 return false;
             }
@@ -456,7 +454,7 @@ namespace UniversalConsole.CommandProcessor
             }
             catch(Exception e)
             {
-                ConsoleAlert.ErrorUnkown();
+                ConsoleError.ErrorUnkown();
                 ErrorLog.Write(e.Message, DateTime.Now);
             }
             return true;
@@ -504,7 +502,7 @@ namespace UniversalConsole.CommandProcessor
             }
             catch(Exception e)
             {
-                ConsoleAlert.ErrorUnkown();
+                ConsoleError.ErrorUnkown();
                 ErrorLog.Write(e.Message, DateTime.Now);
                 return false;
             }
@@ -568,7 +566,7 @@ namespace UniversalConsole.CommandProcessor
                 }
                 catch (Exception e)
                 {
-                    ConsoleAlert.ErrorIncorrectParameter(e);
+                    ConsoleError.ErrorIncorrectParameter(e);
                     ErrorLog.Write(e.Message, DateTime.Now);
                     break;
                 }
@@ -680,7 +678,7 @@ namespace UniversalConsole.CommandProcessor
                 {
                     ProcessStartInfo startInfo = new ProcessStartInfo
                     {
-                        FileName = "UniversalConsole.exe",
+                        FileName = "HackerConsole.exe",
                         Arguments = "/K dotnet run",
                         UseShellExecute = true,
                         CreateNoWindow = false
@@ -690,7 +688,7 @@ namespace UniversalConsole.CommandProcessor
                 }
                 catch (Exception e)
                 {
-                    ConsoleAlert.ErrorInternal();
+                    ConsoleError.ErrorInternal();
                     ErrorLog.Write(e.Message, DateTime.Now);
                 }
             });

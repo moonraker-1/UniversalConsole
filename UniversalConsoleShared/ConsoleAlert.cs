@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UniversalConsoleShared
 {
-    public static class ConsoleAlert
+    public static class ConsoleError
     {
         public static void ErrorNotFound(object item)
         {
