@@ -11,7 +11,8 @@ namespace UniversalConsole.Interfaces
         public enum Params
         {
             ALL,
-            ADV
+            ADV,
+            BASE
         }
     }
 }

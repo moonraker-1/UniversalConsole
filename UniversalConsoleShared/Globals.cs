@@ -11,7 +11,7 @@ namespace UniversalConsoleShared
         /// <summary>
         /// Is required to work with the file system of the machine.
         /// </summary>
-        public static string location = AppDomain.CurrentDomain.BaseDirectory;
+        public static string location = Environment.CurrentDirectory;
 
         /// <summary>
         /// Is required to manage access to different functionalities.

@@ -28,6 +28,7 @@ namespace Black_Tool_Kit.Interfaces
 			FILEINFO,
 			HACKER,
 			REMOVE,
+			GOTO,
             #endregion
 
 

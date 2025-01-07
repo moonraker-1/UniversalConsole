@@ -712,6 +712,8 @@ namespace UniversalConsole.CommandProcessor
                     return executeRemove(obj);
                 case IKeyWords.Keys.PLAY:
                     return executePlay(obj);
+                case IKeyWords.Keys.GOTO:
+                    return executeGoTo(obj);
                 default:
                     return false;
             }
@@ -761,6 +763,44 @@ namespace UniversalConsole.CommandProcessor
         private static bool executePlay(string? whatGame)
         {
             return true;
+        }
+
+        private static bool executeGoTo(string? location)
+        {
+            if (string.IsNullOrEmpty(location))
+            {
+                Environment.CurrentDirectory = "../";
+                Globals.location = Environment.CurrentDirectory;
+                ConsoleInformation.CurrentDirectoryChange(Globals.location);
+                return true;
+            }
+            else if (Enum.TryParse(location.ToUpper(), out IObjects.Params param))
+            {
+                if (param == IObjects.Params.BASE)
+                {
+                    Environment.CurrentDirectory = Environment.SystemDirectory;
+                    Globals.location = Environment.CurrentDirectory;
+                    ConsoleInformation.CurrentDirectoryChange(Globals.location);
+                    return true;
+                }
+                return false;
+            }
+            else
+            {
+                try
+                {
+                    Environment.CurrentDirectory = location;
+                    Globals.location = Environment.CurrentDirectory;
+                    ConsoleInformation.CurrentDirectoryChange(Globals.location);
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    ConsoleError.ErrorCustom($"Location {location} cannot be found, please, check spelling.\n");
+                    ErrorLog.Write(e.Message, DateTime.Now);
+                    return false;
+                }
+            }
         }
     }
 }
