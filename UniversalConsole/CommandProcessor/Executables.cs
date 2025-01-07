@@ -72,6 +72,9 @@ namespace UniversalConsole.CommandProcessor
                 case IKeyWords.Keys.HACKER:
                     executeHacker();
                     return true;
+                case IKeyWords.Keys.GOTO:
+                    // This command may be with a key and no object (no URl).
+                    return executeGoTo(key);
                 default:
                     return false;
             }
@@ -693,6 +696,11 @@ namespace UniversalConsole.CommandProcessor
                 }
             });
             t.Start();
+        }
+
+        private static bool executeGoTo(IKeyWords.Keys key)
+        {
+            return KeywordObjectExecutable.Execute(key, null);
         }
 
         #endregion
