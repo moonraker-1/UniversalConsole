@@ -61,10 +61,8 @@ namespace UniversalConsoleShared
         private static void _showMessage(string message)
         {
             Console.BackgroundColor = ConsoleColor.DarkBlue;
-            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(message);
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
