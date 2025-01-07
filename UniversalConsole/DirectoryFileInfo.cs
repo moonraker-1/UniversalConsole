@@ -92,7 +92,7 @@ namespace UniversalConsole
             {
                 string message = "ERROR: provide a correct directory name, or do not provide anything " +
                     "- the program will\nanalyze the current directory.";
-                ConsoleAlert.ErrorCustom(message);
+                ConsoleError.ErrorCustom(message);
                 ErrorLog.Write(message, DateTime.Now);
                 return false;
             }

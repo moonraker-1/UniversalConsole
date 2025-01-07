@@ -34,7 +34,7 @@ namespace UniversalConsole
                 }
                 catch(Exception e)
                 {
-                    ConsoleAlert.ErrorInternal();
+                    ConsoleError.ErrorInternal();
                     ErrorLog.Write(e.Message, DateTime.Now);
                 }
 
@@ -767,7 +767,7 @@ namespace UniversalConsole
             }
             catch (Exception e)
             {
-                ConsoleAlert.ErrorInternal();
+                ConsoleError.ErrorInternal();
                 ErrorLog.Write(e.Message, DateTime.Now);
                 return false;
             }
