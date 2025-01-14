@@ -33,8 +33,8 @@ namespace UniversalConsoleShared
         public static readonly Dictionary<int, ConsoleColor> consoleColors = new Dictionary<int, ConsoleColor>()
         {
             { 0, ConsoleColor.White },
-            { 1, ConsoleColor.Red },
-            { 2, ConsoleColor.Blue },
+            { 1, ConsoleColor.Red }, // Error color
+            { 2, ConsoleColor.Blue }, //
             { 3, ConsoleColor.Green },
             { 4, ConsoleColor.Yellow },
             { 5, ConsoleColor.Magenta },
@@ -42,8 +42,8 @@ namespace UniversalConsoleShared
             { 7, ConsoleColor.Gray },
             { 8, ConsoleColor.Black },
             { 9, ConsoleColor.DarkRed },
-            { 10, ConsoleColor.DarkBlue },
-            { 11, ConsoleColor.DarkGreen },
+            { 10, ConsoleColor.DarkBlue }, // Information color
+            { 11, ConsoleColor.DarkGreen }, // Successful operation / upgrade of access
             { 12, ConsoleColor.DarkYellow },
             { 13, ConsoleColor.DarkMagenta },
             { 14, ConsoleColor.DarkCyan },
@@ -59,5 +59,17 @@ namespace UniversalConsoleShared
         /// Event log file.
         /// </summary>
         public static string eventLogFile = "eventLog.txt";
+
+        /// <summary>
+        /// Default color of the terminal font.
+        /// </summary>
+        public static ConsoleColor terminalFontColor = ConsoleColor.White;
+
+        /// <summary>
+        /// Default color of the terminal.
+        /// </summary>
+        public static ConsoleColor terminalBackColor = ConsoleColor.Black;
+
+        
     }
 }

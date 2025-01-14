@@ -53,6 +53,11 @@ namespace UniversalConsoleShared
     
     public static class ConsoleInformation
     {
+        public static void Custom(string message)
+        {
+            _showMessage(message);
+        }
+
         public static void CurrentDirectoryChange(string directory)
         {
             _showMessage($"The directory has been changed to {directory}\n");
