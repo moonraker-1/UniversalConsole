@@ -718,8 +718,6 @@ namespace UniversalConsole.CommandProcessor
                     return executeDirInfo(obj);
                 case IKeyWords.Keys.REMOVE:
                     return executeRemove(obj);
-                case IKeyWords.Keys.PLAY:
-                    return executePlay(obj);
                 case IKeyWords.Keys.GOTO:
                     return executeGoTo(obj);
                 default:
@@ -765,11 +763,6 @@ namespace UniversalConsole.CommandProcessor
                 return false;
             }
             
-            return true;
-        }
-
-        private static bool executePlay(string? whatGame)
-        {
             return true;
         }
 
