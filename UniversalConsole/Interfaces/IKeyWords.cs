@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 namespace Black_Tool_Kit.Interfaces
 {
 	internal interface IKeyWords
-	{
+	{ 
+		#region Free Keys
 		public enum Keys
 		{
-            #region Free Keys
+
             THIS,
 			COMPUTER,
 			CALENDAR,
@@ -29,13 +30,8 @@ namespace Black_Tool_Kit.Interfaces
 			HACKER,
 			REMOVE,
 			GOTO,
-            #endregion
-
-
-            #region Advanced Keys
-            PLAY
-            #endregion
         }
+		#endregion
 
 	}
 }
