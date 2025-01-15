@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using UniversalConsole.InputProcessor;
+using UniversalConsoleAdvanced;
 
 
 namespace UniversalConsole.CommandProcessor
@@ -55,6 +56,10 @@ namespace UniversalConsole.CommandProcessor
             if(Enum.TryParse(iData.InputWords[0].ToUpper(), out IKeyWords.Keys key))
             {
                 return KeywordExecutable.Execute(key);
+            }
+            else if (Enum.TryParse(iData.InputWords[0].ToUpper(), out IAdvanced.AdvancedKeyWords advKey))
+            {
+                return AdvancedKeywordExecutable.Execute(advKey);
             }
             return false;
         }

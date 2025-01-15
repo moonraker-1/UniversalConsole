@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UniversalConsoleAdvanced
 {
-    internal interface IAdvanced
+    public interface IAdvanced
     {
         public enum AdvancedKeyWords
         {
@@ -15,7 +15,9 @@ namespace UniversalConsoleAdvanced
             WEATHER,
             OPEN,
             EDIT,
-            SEARCH
+            SEARCH,
+            PLAY,
+            SETCOLORS
         }
     }
 

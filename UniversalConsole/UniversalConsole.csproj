@@ -16,6 +16,7 @@
     <ProjectReference Include="..\ConsoleMathLib\ConsoleMathLib.csproj" />
     <ProjectReference Include="..\FileProcessor\FileProcessor.csproj" />
     <ProjectReference Include="..\HackerConsole\HackerConsole.csproj" />
+    <ProjectReference Include="..\UniversalConsoleAdvanced\UniversalConsoleAdvanced.csproj" />
     <ProjectReference Include="..\UniversalConsoleShared\UniversalConsoleShared.csproj" />
   </ItemGroup>
 
