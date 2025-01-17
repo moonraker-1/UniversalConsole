@@ -94,7 +94,7 @@ namespace UniversalConsoleAdvanced
         public static void Reset()
         {
             Console.ResetColor();
-            ConsoleInformation.Custom("\nSuccessfully re - set to default colours of the system.\n");
+            ConsoleInformation.Custom("\nSuccessfully re - set to default colours of the system.\n", true);
         }
     }
 }

@@ -53,21 +53,35 @@ namespace UniversalConsoleShared
     
     public static class ConsoleInformation
     {
-        public static void Custom(string message)
+        public static void Custom(string message, bool isBackBlue)
         {
-            _showMessage(message);
+            if (isBackBlue)
+            {
+                _showMessageWithBack(message);
+            }
+            else
+            {
+                _showMessage(message);
+            }
         }
 
         public static void CurrentDirectoryChange(string directory)
         {
-            _showMessage($"The directory has been changed to {directory}\n");
+            _showMessageWithBack($"The directory has been changed to {directory}\n");
         }
 
-        private static void _showMessage(string message)
+        private static void _showMessageWithBack(string message)
         {
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine(message);
             Console.BackgroundColor = ConsoleColor.Black;
+        }
+
+        private static void _showMessage( string? message)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine(message);
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

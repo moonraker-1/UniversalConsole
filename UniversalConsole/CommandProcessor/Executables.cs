@@ -75,6 +75,8 @@ namespace UniversalConsole.CommandProcessor
                 case IKeyWords.Keys.GOTO:
                     // This command may be with a key and no object (no URl).
                     return executeGoTo(key);
+                case IKeyWords.Keys.LOC:
+                    return executeLocation();
                 default:
                     return false;
             }
@@ -701,6 +703,12 @@ namespace UniversalConsole.CommandProcessor
         private static bool executeGoTo(IKeyWords.Keys key)
         {
             return KeywordObjectExecutable.Execute(key, null);
+        }
+
+        private static bool executeLocation()
+        {
+            ConsoleInformation.Custom($"Current location: \n{Globals.location}\n", false);
+            return true;
         }
 
         #endregion
