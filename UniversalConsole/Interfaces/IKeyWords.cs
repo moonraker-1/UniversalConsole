@@ -30,6 +30,7 @@ namespace Black_Tool_Kit.Interfaces
 			HACKER,
 			REMOVE,
 			GOTO,
+			LOC
         }
 		#endregion
 
