@@ -27,9 +27,13 @@ namespace UniversalConsoleShared
             Console.SetCursorPosition(OriginalLeftLoc, OriginalTopLoc);
         }
 
-        public static void SeparateFromMainContent()
+        public static void SeparateFromMainContent(ConsoleColor highlightColor, ConsoleColor defaultColor)
         {
-            //Console.WriteLine(new string(' ', Console.WindowWidth));
+            Console.BackgroundColor = highlightColor;
+            Console.Write("********************");
+            Console.BackgroundColor = defaultColor;
+            Console.WriteLine();
         }
+
     }
 }
