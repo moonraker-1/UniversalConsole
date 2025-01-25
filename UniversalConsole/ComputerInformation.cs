@@ -48,17 +48,19 @@ namespace UniversalConsole
 
                 Task.Run(() =>
                 {
+                    ConsoleCursorPosition.SetAtBottom();
+                    ConsoleCursorPosition.SeparateFromMainContent(ConsoleColor.Red, ConsoleColor.Black);
+                    ConsoleCursorPosition.SetAtBottom();
+
                     while (!heavyTask.IsCompleted)
                     {
-                        int bottom = Console.WindowTop + Console.WindowHeight - 1;
-                        Console.SetCursorPosition(0, bottom);
+                        
                         Console.Write("Please wait... Heavy function is running...");
                         Thread.Sleep(500);
                         // Clear the line for the next update
-                        Console.SetCursorPosition(0, bottom);
-                        Console.Write(new string(' ', Console.WindowWidth));
+                        ConsoleCursorPosition.SetAtBottom();
                     }
-                }).Wait(); // Wait for the heavy task to complete
+                }).Wait();
 
                 // Restore the cursor position
                 Console.SetCursorPosition(originalCursorLeft, originalCursorTop);
