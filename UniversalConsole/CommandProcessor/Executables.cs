@@ -540,7 +540,7 @@ namespace UniversalConsole.CommandProcessor
                     while (true)
                     {
                         ConsoleKeyInfo i = Console.ReadKey();
-                        if (i.Key == ConsoleKey.Q)
+                        if (i.Key == ConsoleKey.Q && !(input.EndsWith('s') || input.EndsWith('S')))
                         {
                             Console.WriteLine();
                             return true;
