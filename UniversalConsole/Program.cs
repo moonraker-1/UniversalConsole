@@ -12,7 +12,7 @@ namespace UniversalConsole
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
 
             switch (Globals.accessType)
@@ -26,13 +26,15 @@ namespace UniversalConsole
                     Console.WriteLine("Premium Access Granted");
                     break;
             }
-            Run();
+            await Run();
 
         }
-        static void Run()
+        static async Task Run()
         {
-
-            while (true) 
+#if DEBUG
+            ConsoleDBConnection.TestConnection.TestLocal();
+#endif
+            while (true)
             {
                 Console.Write(shortenLocation() + ">>");
                 Input input = new Input();

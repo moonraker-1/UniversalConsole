@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileProcessor", "..\FilePro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerConsole", "..\HackerConsole\HackerConsole.csproj", "{B4BEFE07-BEBA-4E85-9A3D-8A6BF55A0B24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalConsolePremium", "..\UniversalConsolePremium\UniversalConsolePremium.csproj", "{9C7847A4-DBA9-4B38-B05E-45D0B760FCF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +127,18 @@ Global
 		{B4BEFE07-BEBA-4E85-9A3D-8A6BF55A0B24}.Release|x64.Build.0 = Release|Any CPU
 		{B4BEFE07-BEBA-4E85-9A3D-8A6BF55A0B24}.Release|x86.ActiveCfg = Release|Any CPU
 		{B4BEFE07-BEBA-4E85-9A3D-8A6BF55A0B24}.Release|x86.Build.0 = Release|Any CPU
+		{9C7847A4-DBA9-4B38-B05E-45D0B760FCF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C7847A4-DBA9-4B38-B05E-45D0B760FCF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C7847A4-DBA9-4B38-B05E-45D0B760FCF4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9C7847A4-DBA9-4B38-B05E-45D0B760FCF4}.Debug|x64.Build.0 = Debug|Any CPU
+		{9C7847A4-DBA9-4B38-B05E-45D0B760FCF4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9C7847A4-DBA9-4B38-B05E-45D0B760FCF4}.Debug|x86.Build.0 = Debug|Any CPU
+		{9C7847A4-DBA9-4B38-B05E-45D0B760FCF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C7847A4-DBA9-4B38-B05E-45D0B760FCF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C7847A4-DBA9-4B38-B05E-45D0B760FCF4}.Release|x64.ActiveCfg = Release|Any CPU
+		{9C7847A4-DBA9-4B38-B05E-45D0B760FCF4}.Release|x64.Build.0 = Release|Any CPU
+		{9C7847A4-DBA9-4B38-B05E-45D0B760FCF4}.Release|x86.ActiveCfg = Release|Any CPU
+		{9C7847A4-DBA9-4B38-B05E-45D0B760FCF4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
