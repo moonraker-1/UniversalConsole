@@ -29,15 +29,7 @@ namespace ConsoleDBConnection
     {
         public static async System.Threading.Tasks.Task Connect()
         {
-            string secretIdentifier = "https://uniconsolekeyvault.vault.azure.net/";
-            // Use DefaultAzureCredential (Best for Microsoft Entra ID Authentication)
-            var client = new SecretClient(new Uri(secretIdentifier), new AzureCliCredential());
 
-            // Retrieve the secret value
-            KeyVaultSecret secret = await client.GetSecretAsync("UniversalConsoleConnectionString");
-            string connectionString = secret.Value;
-
-            Console.WriteLine($"Database Connection String: {connectionString}");
         }
     }
 
